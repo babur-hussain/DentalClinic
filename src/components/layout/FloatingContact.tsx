@@ -40,9 +40,9 @@ export function FloatingContact() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-          className="fixed bottom-0 left-0 w-full z-50 md:hidden pb-[env(safe-area-inset-bottom)]"
+          className="fixed bottom-0 left-0 w-full z-50 md:hidden"
         >
-          <div className="glass-dark border-t border-[var(--color-brand-gold)]/20 p-4 flex gap-3 pb-6">
+          <div className="glass-dark border-t border-[var(--color-brand-gold)]/20 p-4 flex gap-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
             <button
               onClick={makeCall}
               className="flex-1 bg-[var(--color-brand-black)] border border-[var(--color-brand-gold)]/30 text-white rounded-full py-3.5 flex justify-center items-center gap-2 font-medium active:scale-95 transition-transform shadow-lg"

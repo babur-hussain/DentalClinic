@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Menu, X, PhoneCall } from 'lucide-react';
+import { Menu, X, PhoneCall, Phone, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export function Navbar() {
@@ -26,6 +26,17 @@ export function Navbar() {
     }
     return () => { document.body.style.overflow = 'unset' };
   }, [isOpen]);
+
+  const openWhatsApp = () => {
+    // Replace with real number
+    const number = "919876543210"; 
+    const message = encodeURIComponent("Hello, I want to book an appointment with Dr. Sumit Gujare.");
+    window.open(`https://wa.me/${number}?text=${message}`, '_blank');
+  };
+
+  const makeCall = () => {
+    window.location.href = "tel:+919876543210";
+  };
 
   const navLinks = [
     { name: 'Home', href: '#home' },
@@ -83,6 +94,28 @@ export function Navbar() {
                 </Link>
               </motion.div>
             ))}
+
+            <div className="flex items-center gap-2">
+              <motion.button 
+                animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
+                whileHover={{ scale: 1.1, color: 'var(--color-brand-gold)' }}
+                onClick={makeCall}
+                className="p-1.5 rounded-full"
+                aria-label="Call Now"
+              >
+                <Phone size={20} />
+              </motion.button>
+              <motion.button 
+                animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
+                whileHover={{ scale: 1.1, color: 'var(--color-brand-gold)' }}
+                onClick={openWhatsApp}
+                className="p-1.5 rounded-full"
+                aria-label="WhatsApp"
+              >
+                <MessageSquare size={20} />
+              </motion.button>
+            </div>
+
             <motion.div animate={{ opacity: 1 }}>
               <Button variant={scrolled ? 'primary' : 'outline'} className={!scrolled ? 'border-white text-white hover:bg-white hover:text-[var(--color-brand-black)]' : ''}>
                 Book Appointment
@@ -90,14 +123,32 @@ export function Navbar() {
             </motion.div>
           </nav>
 
-          {/* Mobile Menu Toggle */}
-          <motion.button
-            animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
-            className="md:hidden p-2 rounded-md"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+          {/* Mobile Actions & Menu Toggle */}
+          <div className="md:hidden flex items-center gap-3">
+            <motion.button 
+              animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
+              onClick={makeCall}
+              className="p-1.5"
+              aria-label="Call Now"
+            >
+              <Phone size={20} />
+            </motion.button>
+            <motion.button 
+              animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
+              onClick={openWhatsApp}
+              className="p-1.5"
+              aria-label="WhatsApp"
+            >
+              <MessageSquare size={20} />
+            </motion.button>
+            <motion.button
+              animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
+              className="p-1.5 rounded-md ml-1"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.button>
+          </div>
         </div>
       </motion.header>
 
