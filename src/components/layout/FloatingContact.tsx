@@ -25,7 +25,7 @@ export function FloatingContact() {
     // Replace with real number
     const number = "919876543210"; 
     const message = encodeURIComponent("Hello, I want to book an appointment with Dr. Sumit Gujare.");
-    window.open(`https://wa.me/${number}?text=${message}`, '_blank');
+    window.location.href = `https://wa.me/${number}?text=${message}`;
   };
 
   const makeCall = () => {
