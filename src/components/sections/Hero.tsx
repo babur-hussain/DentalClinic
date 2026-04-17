@@ -38,6 +38,16 @@ export function Hero() {
     }
   };
 
+  const openWhatsApp = () => {
+    const number = "919876543210"; 
+    const message = encodeURIComponent("Hello, I want to book an appointment with Dr. Sumit Gujare.");
+    window.location.href = `https://wa.me/${number}?text=${message}`;
+  };
+
+  const makeCall = () => {
+    window.location.href = "tel:+919876543210";
+  };
+
   return (
     <section ref={ref} id="home" className="relative w-full h-screen min-h-[600px] overflow-hidden flex items-center bg-[var(--color-brand-black)]">
 
@@ -88,10 +98,10 @@ export function Hero() {
           </motion.p>
 
           <motion.div variants={item} className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="w-full sm:w-auto text-base">
+            <Button onClick={openWhatsApp} size="lg" className="w-full sm:w-auto text-base">
               Book Appointment on WhatsApp
             </Button>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto text-base border-white text-white hover:bg-white hover:text-[var(--color-brand-black)]">
+            <Button onClick={makeCall} variant="outline" size="lg" className="w-full sm:w-auto text-base border-white text-white hover:bg-white hover:text-[var(--color-brand-black)]">
               Call Now
             </Button>
           </motion.div>
