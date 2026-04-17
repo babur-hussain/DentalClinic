@@ -67,7 +67,7 @@ export function Navbar() {
               <span className="text-white font-bold text-xl font-heading">D</span>
             </div>
             <motion.div 
-              animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
+              animate={{ color: (scrolled || isOpen) ? 'var(--color-brand-black)' : '#ffffff' }}
               transition={{ duration: 0.3 }}
               className="flex flex-col"
             >
@@ -126,7 +126,7 @@ export function Navbar() {
           {/* Mobile Actions & Menu Toggle */}
           <div className="md:hidden flex items-center gap-3">
             <motion.button 
-              animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
+              animate={{ color: (scrolled || isOpen) ? 'var(--color-brand-black)' : '#ffffff' }}
               onClick={makeCall}
               className="p-1.5"
               aria-label="Call Now"
@@ -134,7 +134,7 @@ export function Navbar() {
               <Phone size={20} />
             </motion.button>
             <motion.button 
-              animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
+              animate={{ color: (scrolled || isOpen) ? 'var(--color-brand-black)' : '#ffffff' }}
               onClick={openWhatsApp}
               className="p-1.5"
               aria-label="WhatsApp"
@@ -142,7 +142,7 @@ export function Navbar() {
               <MessageSquare size={20} />
             </motion.button>
             <motion.button
-              animate={{ color: scrolled ? 'var(--color-brand-black)' : '#ffffff' }}
+              animate={{ color: (scrolled || isOpen) ? 'var(--color-brand-black)' : '#ffffff' }}
               className="p-1.5 rounded-md ml-1"
               onClick={() => setIsOpen(!isOpen)}
             >
